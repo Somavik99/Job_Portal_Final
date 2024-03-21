@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaUserPlus } from "react-icons/fa";
 import { MdFindInPage } from "react-icons/md";
 import { IoMdSend } from "react-icons/io";
@@ -17,7 +17,7 @@ const HowItWorks = () => {
                  By clicking on create Account
               </p>
             </div>
-            <div className="card">
+            <div className="card" style={{borderRadius:"10px"}}>
               <MdFindInPage />
               <p>Find a Job/Post a Job</p>
               <p>

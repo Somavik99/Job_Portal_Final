@@ -2,13 +2,13 @@ import React from "react";
 import {
   MdOutlineDesignServices,
   MdOutlineWebhook,
-  MdAccountBalance,
-  MdOutlineAnimation,
+
 } from "react-icons/md";
 import { TbAppsFilled } from "react-icons/tb";
-import { FaReact } from "react-icons/fa";
-import { GiArtificialIntelligence } from "react-icons/gi";
-import { IoGameController } from "react-icons/io5";
+// import { FaReact } from "react-icons/fa";
+// import { GiArtificialIntelligence } from "react-icons/gi";
+// // import { IoGameController ,  MdAccountBalance,
+//   MdOutlineAnimation,} from "react-icons/io5";
 
 const PopularCategories = () => {
   const categories = [
@@ -34,11 +34,11 @@ const PopularCategories = () => {
   ];
   return (
     <div className="categories">
-      <h3>POPULAR CATEGORIES</h3>
+      <h3 style={{textAlign:"center"}}>POPULAR CATEGORIES</h3>
       <div className="banner">
         {categories.map((element) => {
           return (
-            <div className="card" key={element.id}>
+            <div className="card" key={element.id} style={{borderRadius:"10px"}}>
               <div className="icon">{element.icon}</div>
               <div className="text">
                 <p>{element.title}</p>

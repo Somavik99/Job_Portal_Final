@@ -15,32 +15,32 @@ const MyApplications = () => {
   const navigateTo = useNavigate();
 
   useEffect(() => {
-    try {
-      if (user && user.role === "Employer") {
-        axios
-          .get("http://localhost:4000/api/v1/application/employer/getall", {
+    const fetchApplications = async () => {
+      try {
+        if (user && user.role === "Employer") {
+          const res = await axios.get("http://localhost:4000/api/v1/application/employer/getall", {
             withCredentials: true,
-          })
-          .then((res) => {
-            setApplications(res.data.applications);
           });
-      } else {
-        axios
-          .get("http://localhost:4000/api/v1/application/jobseeker/getall", {
+          setApplications(res.data.applications);
+        } else {
+          const res = await axios.get("http://localhost:4000/api/v1/application/jobseeker/getall", {
             withCredentials: true,
-          })
-          .then((res) => {
-            setApplications(res.data.applications);
           });
+          // Filter applications where the applicant ID matches the current user's ID
+          const filteredApplications = res.data.applications.filter(application => application.applicantId === user._id);
+          setApplications(filteredApplications);
+        }
+      } catch (error) {
+        toast.error(error.response.data.message);
       }
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
-  }, [isAuthorized]);
+    };
 
-  if (!isAuthorized) {
-    navigateTo("/");
-  }
+    if (!isAuthorized) {
+      navigateTo("/");
+    } else {
+      fetchApplications();
+    }
+  }, [isAuthorized, user, navigateTo]);
 
   const deleteApplication = (id) => {
     try {
@@ -75,8 +75,7 @@ const MyApplications = () => {
           <h1>My Applications</h1>
           {applications.length <= 0 ? (
             <>
-              {" "}
-              <h4>No Applications Found</h4>{" "}
+              <h4>No Applications Found</h4>
             </>
           ) : (
             applications.map((element) => {

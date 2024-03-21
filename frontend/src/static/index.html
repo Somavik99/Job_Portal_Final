@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/style.css" />
+    
+    <title>Job Portal Landing Page</title>
+  </head>
+  <body>
+    <nav>
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          column-gap: 250px;
+        "
+      >
+        <h1>Job Portal</h1>
+        <div class="Menubar" id="Menu">
+          <i class="bi bi-list" style="font-size: 25px"></i>
+        </div>
+        <div class="closeMenu" id="close">
+          <i class="bi bi-x-lg" style="font-size: 25px"></i>
+        </div>
+      </div>
+
+      <section class="Link__section" id="Links">
+        <ul >
+          <li><a href="">Employers</a></li>
+          <li><a href="">Candidate</a></li>
+          <li><a href="">Job</a></li>
+          <li><a href="">About Us</a></li>
+        </ul>
+        <div >
+          <button><a href="http://localhost:3000/register">SingIn</a></button>
+          <button><a href="http://localhost:3000/">LogIn</a></button>
+        </div>
+      </section>
+    </nav>
+    <main>
+      <section class="Intro__section">
+        <img
+          src="./Assets/man-with-join-us-sign-for-open-recruitment.png"
+          alt="Opportunity"
+          style="max-width: 80%"
+        />
+        <div>
+          <p style="font-size: 3.2vw; font-weight: 700">
+            Trying to find your favourite jobs. Here You will find
+            <span style="color: orange">1000+</span>
+            opportunities depending on what you prefer.
+          </p>
+
+          <button>Start Searching</button>
+        </div>
+      </section>
+
+      <section class="Logo__Slider">
+        <p style="font-size: 2.2vw">Featured companies</p>
+        <ul class="Slider__images">
+          <li>
+            <img src="./Assets/Capgemini_201x_logo.svg" alt="Capgemini" />
+          </li>
+          <li><img src="./Assets/ACN_BIG.png" alt="Accenture" /></li>
+          <li><img src="./Assets/infosys.png" alt="Infosys" /></li>
+          <li><img src="./Assets/CTSH_BIG.png" alt="Congnizant" /></li>
+          <li><img src="./Assets/WIT_BIG.png" alt="Wipro" /></li>
+          <li><img src="./Assets/TECHM.NS_BIG.png" alt="Tech Mahindra" /></li>
+          <li><img src="./Assets/HCLTECH.NS.png" alt="" /></li>
+          <li><img src="./Assets/MSFT_BIG.png" alt="" /></li>
+          <li><img src="./Assets/MINDTREE.NS.png" alt="" /></li>
+          <li><img src="./Assets/TCS.NS_BIG.png" alt="" /></li>
+        </ul>
+        <ul class="Slider__images">
+          <li>
+            <img src="./Assets/Capgemini_201x_logo.svg" alt="Capgemini" />
+          </li>
+          <li><img src="./Assets/ACN_BIG.png" alt="Accenture" /></li>
+          <li><img src="./Assets/infosys.png" alt="Infosys" /></li>
+          <li><img src="./Assets/CTSH_BIG.png" alt="Congnizant" /></li>
+          <li><img src="./Assets/WIT_BIG.png" alt="Wipro" /></li>
+          <li><img src="./Assets/TECHM.NS_BIG.png" alt="Tech Mahindra" /></li>
+          <li><img src="./Assets/HCLTECH.NS.png" alt="" /></li>
+          <li><img src="./Assets/MSFT_BIG.png" alt="" /></li>
+          <li><img src="./Assets/MINDTREE.NS.png" alt="" /></li>
+          <li><img src="./Assets/TCS.NS_BIG.png" alt="" /></li>
+        </ul>
+      </section>
+      <section class="Container">
+        <h1
+          style="
+            text-align: center;
+            margin-top: 50px;
+            font-size: 40px;
+            color: orange;
+          "
+        >
+          Recent Jobs
+        </h1>
+        <div class="Card__container">
+          <section class="Card">
+            <div>
+              <img src="./Assets/adobe.png" alt="adobe" />
+              <p>Adobe India</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location">Bangalore,India</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+          <section class="Card">
+            <div>
+              <img src="./Assets/airbnb (1).png" alt="adobe" />
+              <p>Airbnb</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location">Remote job</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+          <section class="Card">
+            <div>
+              <img src="./Assets/firefox (1).png" alt="adobe" />
+              <p>Mozilla</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location">Bangalore,India</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+          <section class="Card">
+            <div>
+              <img src="./Assets/instagram (1).png" alt="adobe" />
+              <p>Instagram</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location">Bangalore,India</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+          <section class="Card">
+            <div>
+              <img src="./Assets/microsoft (3).png" alt="adobe" />
+              <p>Microsoft India</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location" style="color: orange">Bangalore,India</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+
+          <section class="Card">
+            <div>
+              <img src="./Assets/mahindra.png" alt="adobe" />
+              <p>Tech Mahindra</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location">Bangalore,India</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+          <section class="Card">
+            <div>
+              <img src="./Assets/TCS.NS_BIG.png" alt="adobe" />
+              <p>Adobe India</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location">Bangalore,India</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+          <section class="Card">
+            <div>
+              <img src="./Assets/MINDTREE.NS.png" alt="adobe" />
+              <p>Mindtree India</p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-geo-fill"></i>Location:
+                <span id="Location">Bangalore,India</span>
+              </p>
+              <p><i class="bi bi-people-fill"></i>Vacancies: <span>2</span></p>
+            </div>
+            <div>
+              <p>
+                <i class="bi bi-cash-stack"></i>Salary:
+                <span>Rs. 500000 - 700000</span>
+              </p>
+            </div>
+            <button>View Details</button>
+          </section>
+        </div>
+        <div style="text-align: center; margin-top: 20px">
+          <button class="see__more">See more</button>
+        </div>
+      </section>
+      <section style="margin-top: 50px">
+        <div class="Catagory__heading">
+          <h1 style="color: orange">Explore The Top Catagories</h1>
+          <p
+            style="
+              color: gray;
+              width: 650px;
+              font-size: 1.2rem;
+              text-align: center;
+            "
+          >
+            At vero eos et accusamus et iusto odio dignissimos.
+          </p>
+        </div>
+
+        <div class="Catagory">
+          <div>
+            <p class="job__types">Business & Tech</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+          <div>
+            <p class="job__types">Education Training</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+          <div>
+            <p class="job__types">Telecom</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+          <div>
+            <p class="job__types">BPO</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+        </div>
+        <div class="Catagory">
+          <div>
+            <p class="job__types">Transportation</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+          <div>
+            <p class="job__types">Accounts</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+          <div>
+            <p class="job__types">IT</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+          <div>
+            <p class="job__types">Healthcare</p>
+            <p>You can view all popular jobs according your future careers.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer style="margin-top: 60px">
+      <section class="Footer__top">
+        <h1 style="color: rgb(255, 139, 15); font-weight: 800; font-size: 55px">
+          For more news subscribe to our website
+        </h1>
+        <div>
+          <input type="email" placeholder="Enter your email..." />
+          <button>Subscribe</button>
+        </div>
+      </section>
+      <section class="Footer__bottom">
+        <div>
+          <h1>Job Portal</h1>
+          <p><span>Address: </span>Noida,Delhi</p>
+          <p>
+            <i class="bi bi-facebook" style="font-size: 30px; margin: 18px"></i>
+            <i
+              class="bi bi-instagram"
+              style="font-size: 30px; margin: 18px"
+            ></i>
+            <i
+              class="bi bi-twitter-x"
+              style="font-size: 30px; margin: 18px"
+            ></i>
+            <i class="bi bi-google" style="font-size: 30px; margin: 18px"></i>
+            <i class="bi bi-globe" style="font-size: 30px; margin: 18px"></i>
+          </p>
+          <input
+            type="email"
+            placeholder="Enter email..."
+            style="border: 1px solid black; padding: 10px; border-radius: 8px"
+          />
+          <button
+            style="border: 1px solid black; padding: 10px; border-radius: 8px"
+          >
+            Contact Us
+          </button>
+        </div>
+
+        <div>
+          <h3>The Company</h3>
+          <ul>
+            <li>About Us</li>
+            <li>Leadership</li>
+            <li>Contact Us</li>
+            <li>Investor Relations</li>
+            <li>Trust, Safety & Security</li>
+          </ul>
+        </div>
+        <div>
+          <h3>For Clients</h3>
+          <ul>
+            <li>Talent Marketplace</li>
+            <li>Payroll Services</li>
+            <li>Direct Contracts</li>
+            <li>Hire Worldwide</li>
+            <li>Hire in the USA</li>
+            <li>How to Hire</li>
+          </ul>
+        </div>
+      </section>
+    </footer>
+    <script src="./JS/script.js"></script>
+  </body>
+</html>

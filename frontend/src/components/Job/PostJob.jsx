@@ -134,6 +134,7 @@ const PostJob = () => {
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Location"
             />
+            
             <div className="salary_wrapper">
               <select
                 value={salaryType}
@@ -168,8 +169,10 @@ const PostJob = () => {
                       onChange={(e) => setSalaryTo(e.target.value)}
                     />
                   </div>
+                  
                 )}
               </div>
+              
             </div>
             <textarea
               rows="10"
