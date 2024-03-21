@@ -30,7 +30,8 @@ const Navbar = () => {
     <nav className={isAuthorized ? "navbarShow" : "navbarHide"}>
       <div className="container">
         <div className="logo">
-       Job Portal
+        <h1 style={{ fontSize: '1.5rem', marginTop: '50px' }}>Job Portal</h1>
+
         </div>
         <ul className={!show ? "menu" : "show-menu menu"}>
           <li>

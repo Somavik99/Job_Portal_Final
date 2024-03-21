@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+import "../Css/jobcard.css"
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -28,6 +29,7 @@ const Jobs = () => {
     <section className="jobs page">
       <div className="container">
         <h1>ALL AVAILABLE JOBS</h1>
+         
         <div className="banner">
           {jobs.jobs &&
             jobs.jobs.map((element) => {

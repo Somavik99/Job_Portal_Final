@@ -27,37 +27,41 @@ const applicationSchema = new mongoose.Schema({
   },
   resume: {
     public_id: {
-      type: String, 
-      required: true,
+      type: String,
     },
     url: {
-      type: String, 
-      required: true,
+      type: String,
     },
   },
   applicantID: {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+    type: {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      role: {
+        type: String,
+        enum: ["Job Seeker"],
+        required: true,
+      },
     },
-    role: {
-      type: String,
-      enum: ["Job Seeker"],
-      required: true,
-    },
+    required: true,
   },
   employerID: {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+    type: {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+      role: {
+        type: String,
+        enum: ["Employer"],
+        required: true,
+      },
     },
-    role: {
-      type: String,
-      enum: ["Employer"],
-      required: true,
-    },
+    required: true,
   },
 });
 
