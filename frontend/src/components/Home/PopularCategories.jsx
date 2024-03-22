@@ -34,7 +34,7 @@ const PopularCategories = () => {
   ];
   return (
     <div className="categories">
-      <h3 style={{textAlign:"center"}}>POPULAR CATEGORIES</h3>
+      <h3 style={{textAlign:"center"}}>Our Job  CATEGORIES</h3>
       <div className="banner">
         {categories.map((element) => {
           return (

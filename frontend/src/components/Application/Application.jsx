@@ -10,6 +10,7 @@ const Application = () => {
   const [coverLetter, setCoverLetter] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [resume, setResume] = useState(null); // State to handle resume file
 
   const { isAuthorized, user } = useContext(Context);
   const navigateTo = useNavigate();
@@ -24,6 +25,9 @@ const Application = () => {
     formData.append("address", address);
     formData.append("coverLetter", coverLetter);
     formData.append("jobId", id);
+    if (resume) {
+      formData.append("resume", resume); // Append resume file to FormData
+    }
 
     try {
       const { data } = await axios.post(
@@ -41,6 +45,7 @@ const Application = () => {
       setCoverLetter("");
       setPhone("");
       setAddress("");
+      setResume(null); // Reset resume state
       toast.success(data.message);
       navigateTo("/job/getall");
     } catch (error) {
@@ -85,6 +90,12 @@ const Application = () => {
             placeholder="CoverLetter..."
             value={coverLetter}
             onChange={(e) => setCoverLetter(e.target.value)}
+          />
+          {/* Input field for resume */}
+          <input
+            type="file"
+            name="resume" // Ensure the name attribute matches the key used in the backend
+            onChange={(e) => setResume(e.target.files[0])}
           />
           <button type="submit">Send Application</button>
         </form>

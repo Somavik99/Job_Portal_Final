@@ -16,7 +16,7 @@ const PopularCompanies = () => {
   return (
     <div className="companies">
       <div className="container">
-        <h3>TOP COMPANIES</h3>
+        <h3>Our  Popular COMPANIES</h3>
         <div className="banner">
           {companies.map((element) => {
             return (

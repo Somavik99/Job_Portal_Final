@@ -1,13 +1,14 @@
 import React, { useContext, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { Context } from "../../main";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaPhoneFlip } from "react-icons/fa6";
+import { FiKey } from "react-icons/fi"; // Icon for OTP
 import { Link, Navigate } from "react-router-dom";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { Context } from "../../main";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -15,15 +16,33 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [otpValue, setOtpValue] = useState(""); // State for OTP
+  const [sentOTP, setSentOTP] = useState(false); // State to track whether OTP is sent
 
   const { isAuthorized, setIsAuthorized, user, setUser } = useContext(Context);
+
+  const isValidPhone = (phoneNumber) => {
+    const phoneRegex = /^[0-9]{10}$/; // Regex pattern for a 10-digit phone number
+    return phoneRegex.test(phoneNumber);
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      if (!sentOTP) {
+        toast.error("Please send OTP first.");
+        return;
+      }
+
+      // Verify OTP
+      if (!otpValue) {
+        toast.error("Please enter OTP.");
+        return;
+      }
+
       const response = await axios.post(
         "http://localhost:4000/api/v1/user/register",
-        { name, phone, email, role, password },
+        { name, phone, email, role, password, otp: otpValue },  
         {
           headers: {
             "Content-Type": "application/json",
@@ -31,7 +50,8 @@ const Register = () => {
           withCredentials: true,
         }
       );
-      console.log("Server response:", response); // Debugging message
+
+      console.log("Server response:", response);  
       const { data } = response;
       if (data && data.message) {
         toast.success(data.message);
@@ -54,6 +74,43 @@ const Register = () => {
     }
   };
 
+  const handleSendOtp = async () => {
+    try {
+      // Check for valid phone number format
+      if (!isValidPhone(phone)) {
+        toast.error("Please enter a valid phone number", {
+          position: "bottom-right",
+        });
+        return;
+      }
+
+      const response = await axios.post(
+        "http://localhost:4000/api/v1/user/send-otp",
+        {
+          email,
+          phone,
+        },
+        { withCredentials: true }
+      );
+
+      if (response) {
+        toast.success("OTP sent successfully", {
+          position: "bottom-right",
+        });
+        setSentOTP(true);
+      } else {
+        toast.error("Failed to send OTP", {
+          position: "bottom-right",
+        });
+      }
+    } catch (ex) {
+      console.log(ex);
+      toast.error("Failed to send OTP", {
+        position: "bottom-right",
+      });
+    }
+  };
+
   if (isAuthorized) {
     return <Navigate to={'/'} />;
   }
@@ -63,7 +120,6 @@ const Register = () => {
       <section className="authPage">
         <div className="container">
           <div className="header">
-            
             <h3>Create a new account</h3>
           </div>
           <form>
@@ -83,7 +139,7 @@ const Register = () => {
               <div>
                 <input
                   type="text"
-                  placeholder="Enter name"
+                  placeholder="Enter Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -95,7 +151,7 @@ const Register = () => {
               <div>
                 <input
                   type="email"
-                  placeholder="enter email"
+                  placeholder="Enter Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -106,8 +162,8 @@ const Register = () => {
               <label>Phone Number</label>
               <div>
                 <input
-                  type="number"
-                  placeholder="12345678"
+                  type="text"
+                  placeholder="Enter Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -119,16 +175,38 @@ const Register = () => {
               <div>
                 <input
                   type="password"
-                  placeholder="Your Password"
+                  placeholder="Enter Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <RiLock2Fill />
               </div>
             </div>
-            <button type="submit" onClick={handleRegister}>
-              Register
-            </button>
+            
+            {/* OTP input field */}
+            <div className="inputTag">
+              <label>Enter OTP</label>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Enter OTP"
+                  value={otpValue}
+                  onChange={(e) => setOtpValue(e.target.value)}
+                />
+                <FiKey /> {/* Icon for OTP */}
+              </div>
+            </div>
+            
+            {/* Conditionally render OTP verification button */}
+            {sentOTP && (
+              <button type="button" onClick={handleRegister}>Register</button>
+            )}
+
+            {/* Conditionally render OTP sending button */}
+            {!sentOTP && (
+              <button type="button" onClick={handleSendOtp}>Send OTP</button>
+            )}
+
             <Link to={"/login"}>Login Now</Link>
           </form>
         </div>
