@@ -2,7 +2,8 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import ErrorHandler from "../middlewares/error.js";
 import { Application } from "../models/applicationSchema.js";
 import { Job } from "../models/jobSchema.js";
-import cloudinary from "cloudinary";
+import path from 'path';
+const UPLOAD_FOLDER = 'uploads';
 
 export const postApplication = catchAsyncErrors(async (req, res, next) => {
   const { role } = req.user;
@@ -37,18 +38,24 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     role: "Employer",
   };
 
-  let resumeData;
+  let resumeFileName; // Variable to store the resume file name
+  let resumeUrl; // Variable to store the resume URL
+
   if (req.files && req.files.resume) {
-    const { resume } = req.files;
-     
-    const resumeUrl = 'URL_TO_YOUR_RESUME_FILE';
-     
-    resumeData = {
-      url: resumeUrl,
-       
-    };
+    const resume = req.files.resume;
+
+    // Generate a unique file name for the resume
+    resumeFileName = `${Date.now()}_${resume.name}`;
+
+    // Move the uploaded resume file to the server's upload folder
+    const filePath = path.join(UPLOAD_FOLDER, resumeFileName);
+    await resume.mv(filePath);
+
+    // Construct the URL to access the uploaded resume
+    resumeUrl = `http://localhost:4000/uploads/${resumeFileName}`; // Update this with your server URL
   }
 
+  // Create application data including resume file name and URL if it exists
   const applicationData = {
     name,
     email,
@@ -57,21 +64,21 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     address,
     applicantID,
     employerID,
+    resume: resumeFileName, // Store the resume file name
+    resumeUrl: resumeUrl, // Store the resume URL
   };
 
-  // Include resumeData only if it exists
-  if (resumeData) {
-    applicationData.resume = resumeData;
-  }
-
+  // Create the application in the database
   const application = await Application.create(applicationData);
 
+  // Send success response with the created application
   res.status(200).json({
     success: true,
     message: "Application Submitted!",
     application,
   });
 });
+
 
 export const employerGetAllApplications = catchAsyncErrors(
   async (req, res, next) => {
