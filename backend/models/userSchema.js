@@ -34,6 +34,12 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  otp: {
+    type: String,
+  },
+  otpExpiration: {
+    type: Date,
+  }
 });
 
 
@@ -55,6 +61,13 @@ userSchema.methods.getJWTToken = function (expiresIn) {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: expiresIn // Make sure expiresIn is correctly passed
   });
+};
+userSchema.statics.checkUser = async function (email) {
+  const user = await this.findOne({ email });
+  if (user) {
+    return true
+  }
+  return false
 };
 
 

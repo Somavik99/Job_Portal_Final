@@ -1,12 +1,13 @@
 // otpController.js
-
+import { User } from "../models/userSchema.js";
+import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "",  
-    pass: "",  
+    user: "narayanaishwary110@gmail.com", // Update with your Gmail email address
+    pass: "ezsk tmnb pasd sadz", // Update with your Gmail password
   },
 });
 
@@ -17,10 +18,10 @@ export const sendOTP = async (req, res, next) => {
   if (!email) {
     return res.status(400).json({ success: false, message: "Email address is required" });
   }
-
+  const user = await User.findOne({ email });
   const otp = generateOTP();
   const mailOptions = {
-    from: "Your Name <your.email@gmail.com>",
+    from: "JobPortal",
     to: email,
     subject: "OTP for Registration",
     html: `
@@ -688,6 +689,11 @@ export const sendOTP = async (req, res, next) => {
             </tbody></table>
     `,
   };
+  if (user) {
+    user.otp = otp
+    user.otpExpiration = Date.now()
+    await user.save();
+  }
 
   try {
     await transporter.sendMail(mailOptions);
@@ -695,5 +701,39 @@ export const sendOTP = async (req, res, next) => {
   } catch (error) {
     console.error("Error sending OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
+  }
+};
+
+export const verifyOTP = async (req, res) => {
+  const { email, otp } = req.body;
+  try {
+    // Find the user by email
+    const user = await User.findOne({ email });
+    // console.log(user)
+    // Check if OTP exists and is not expired
+    if (!user || !user.otp || user.otpExpires < Date.now()) {
+      throw Error("OTP expired or not found");
+    }
+
+    // Compare received OTP with the one stored in the user's document
+    if (otp !== user.otp) {
+      throw Error("Incorrect OTP");
+    }
+
+    // Clear OTP and expiration time from the user's document
+    user.otp = undefined;
+    user.otpExpires = undefined;
+    if (req.body.updateUser) {
+      // let password = req.body.password
+      // const salt = await bcrypt.genSalt();
+      user.password = req.body.password;
+    }
+    await user.save();
+
+    // Send response
+    res.status(200).json({ message: "OTP verified successfully", verified: true });
+  } catch (error) {
+    console.error("Error verifying OTP:", error);
+    res.status(400).json({ error: error.message, verified: false });
   }
 };
