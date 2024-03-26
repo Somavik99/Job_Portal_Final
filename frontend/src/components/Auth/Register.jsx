@@ -21,11 +21,6 @@ const Register = () => {
 
   const { isAuthorized, setIsAuthorized, user, setUser } = useContext(Context);
 
-  const isValidPhone = (phoneNumber) => {
-    const phoneRegex = /^[0-9]{10}$/; // Regex pattern for a 10-digit phone number
-    return phoneRegex.test(phoneNumber);
-  };
-
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
@@ -42,7 +37,7 @@ const Register = () => {
 
       const response = await axios.post(
         "http://localhost:4000/api/v1/user/register",
-        { name, phone, email, role, password, otp: otpValue },  
+        { name, phone, email, role, password, otp: otpValue }, // Include OTP in registration data
         {
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +46,7 @@ const Register = () => {
         }
       );
 
-      console.log("Server response:", response);  
+      console.log("Server response:", response); // Debugging message
       const { data } = response;
       if (data && data.message) {
         toast.success(data.message);
@@ -76,19 +71,10 @@ const Register = () => {
 
   const handleSendOtp = async () => {
     try {
-      // Check for valid phone number format
-      if (!isValidPhone(phone)) {
-        toast.error("Please enter a valid phone number", {
-          position: "bottom-right",
-        });
-        return;
-      }
-
       const response = await axios.post(
         "http://localhost:4000/api/v1/user/send-otp",
         {
           email,
-          phone,
         },
         { withCredentials: true }
       );
@@ -162,7 +148,7 @@ const Register = () => {
               <label>Phone Number</label>
               <div>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Enter Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -182,7 +168,7 @@ const Register = () => {
                 <RiLock2Fill />
               </div>
             </div>
-            
+
             {/* OTP input field */}
             <div className="inputTag">
               <label>Enter OTP</label>
@@ -196,15 +182,21 @@ const Register = () => {
                 <FiKey /> {/* Icon for OTP */}
               </div>
             </div>
-            
+
             {/* Conditionally render OTP verification button */}
             {sentOTP && (
-              <button type="button" onClick={handleRegister}>Register</button>
+              <button type="button" onClick={handleRegister}>
+
+
+                Register
+              </button>
             )}
 
             {/* Conditionally render OTP sending button */}
             {!sentOTP && (
-              <button type="button" onClick={handleSendOtp}>Send OTP</button>
+              <button type="button" onClick={handleSendOtp}>
+                Send OTP
+              </button>
             )}
 
             <Link to={"/login"}>Login Now</Link>

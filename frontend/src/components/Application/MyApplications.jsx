@@ -63,7 +63,7 @@ const MyApplications = () => {
   return (
     <section className="my_applications page">
       {user && (
-        <div className="container">
+        <div className="">
           <h1>{user.role === "Job Seeker" ? "My Applications" : "Applications From Job Seekers"}</h1>
           {applications.length <= 0 ? (
             <>

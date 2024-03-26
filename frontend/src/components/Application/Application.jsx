@@ -94,7 +94,6 @@ const Application = () => {
           {/* Input field for resume */}
           <input
             type="file"
-            name="resume" // Ensure the name attribute matches the key used in the backend
             onChange={(e) => setResume(e.target.files[0])}
           />
           <button type="submit">Send Application</button>

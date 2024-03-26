@@ -7,6 +7,9 @@
   overflow-x: hidden;
   font-family: "Roboto", sans-serif;
 }
+/* body{
+  position: relative;
+} */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -206,12 +209,12 @@ p {
   display: flex;
   gap: 12px;
   font-size: 16px;
-  color: #fff;
+  color: #f1f3f6;
 }
 .footerShow div a {
   font-size: 20px;
   text-decoration: none;
-  color: #fff;
+  color: #f1f3f6;
 }
 .footerShow div a:hover {
   color: #2d5649;
@@ -285,9 +288,10 @@ p {
   display: flex;
   gap: 20px;
   align-items: center;
-  background: #fff;
+  background: #f1f3f6;
   width: 220px;
   padding: 10px 20px;
+  
 }
 .heroSection .details .card .icon {
   font-size: 24px;
@@ -366,7 +370,7 @@ p {
   }
 }
 .howitworks {
-  background: #fff;
+  background: #f1f3f6;
 }
 .howitworks .container {
   max-width: 1500px;
@@ -392,12 +396,15 @@ p {
   flex: 1;
   height: 350px;
   padding: 30px 50px;
+  border-radius: 10px;
   gap: 12px;
   justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 .howitworks .container .banner .card:nth-child(2) {
-  background: #18191c;
+  background: #8a97bfa1;
   color: #fff;
+
 }
 .howitworks .container .banner .card svg {
   font-size: 30px;
@@ -453,7 +460,7 @@ p {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #fff;
+  background: #f1f3f6;
 }
 .categories .banner .card:hover {
   transition: all 0.3s;
@@ -500,7 +507,7 @@ p {
 }
 
 .companies {
-  background: #fff;
+  background: #f1f3f6;
   padding: 50px 0;
 }
 .companies .container {
@@ -585,7 +592,7 @@ p {
   }
 }
 .jobs {
-  background: #fff;
+  background: #f1f3f6;
   min-height: 100vh;
   padding: 50px 20px;
 }
@@ -662,7 +669,7 @@ p {
 }
 
 .jobDetail {
-  background: #fff;
+  background: #f1f3f6;
   padding: 50px 20px;
 }
 .jobDetail .container {
@@ -768,7 +775,7 @@ p {
   }
 }
 .my_applications {
-  background: #fff;
+  background: #f1f3f6;
   padding: 50px 20px;
   min-height: 885px;
 }
@@ -785,7 +792,6 @@ p {
   align-items: center;
   border-bottom: 1px solid gainsboro;
   padding: 20px 0;
-  max-width: min-content;
 }
 .job_seeker_card .detail {
   flex: 3;
@@ -870,7 +876,7 @@ p {
 }
 
 .job_post {
-  background: #fff;
+  background: #f1f3f6;
   padding: 50px 20px;
   min-height: 870px;
   display: flex;
@@ -973,7 +979,7 @@ p {
   }
 }
 .myJobs {
-  background: #fff;
+  background: #f1f3f6;
   padding: 50px 20px;
   min-height: 870px;
 }
@@ -1007,7 +1013,7 @@ p {
 }
 .myJobs .container .banner .card .content span {
   font-size: 20px;
-  margin-right: Auto;
+  margin-right: 6px;
   font-weight: bold;
 }
 .myJobs .container .banner .card .content input,
@@ -1088,7 +1094,7 @@ p {
 }
 .myJobs .container .banner .card .button_wrapper .delete_btn {
   background: #d9534f;
-  color: #fff;
+  color: #f1f3f6;
 }
 .myJobs .container .banner .card .button_wrapper .check_btn {
   background: transparent;
@@ -1105,7 +1111,7 @@ p {
 .myJobs .container .banner .card .button_wrapper .check_btn:hover {
   transition: all 0.3s;
   background: #184235;
-  color: #fff;
+  color: #f1f3f6;
 }
 .myJobs .container .banner .card .button_wrapper .cross_btn {
   background: transparent;
@@ -1122,7 +1128,7 @@ p {
 .myJobs .container .banner .card .button_wrapper .cross_btn:hover {
   transition: all 0.3s;
   background: #d9534f;
-  color: #fff;
+  color: #f1f3f6;
 }
 .myJobs .container .banner .card .button_wrapper .edit_btn_wrapper {
   gap: 20px;
@@ -1151,10 +1157,13 @@ p {
 }
 nav {
   background: #8a97bfa1;
-  padding: 0 20px;
-  
+  backdrop-filter: blur(8px);
+  padding: 0 15px;
+  position: sticky;
+  top: 0;
 }
 nav .container {
+
   max-width: 1500px;
   min-width: 1500px;
   margin: 0 auto;
@@ -1177,14 +1186,14 @@ nav .menu {
 nav .menu button {
   height: fit-content;
   padding: 7px;
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1px solid #f1f3f6;
+  color: #f1f3f6;
   background: transparent;
   font-size: 20px;
   font-weight: 300;
 }
 nav .menu button:hover {
-  color: #fff;
+  color: #f1f3f6;
   background: #184235;
   transition: all 0.3s;
   cursor: pointer;
@@ -1192,7 +1201,7 @@ nav .menu button:hover {
   border: 1px solid #184235;
 }
 nav .menu li a {
-  color: #fff;
+  color: #f1f3f6;
   text-decoration: none;
   font-weight: 300;
   font-size: 20px;
@@ -1226,7 +1235,7 @@ nav .hamburger {
 }
 @media (max-width: 1130px) {
   .page {
-    padding-top: 120px;
+    padding-top: 100px;
   }
   nav {
     position: fixed;
@@ -1238,15 +1247,16 @@ nav .hamburger {
   nav .hamburger {
     display: block;
     font-size: 35px;
-    color: #fff;
+    color: #f1f3f6;
   }
   nav .container {
     align-items: center;
   }
   .menu {
-    position: fixed;
-    top: 120px;
-    background: #fff;
+    z-index: 1000;
+    position: relative;
+    top: 240px;
+    background: #8a97bfa1;
     left: -100%;
     transition: all 0.3s;
     width: 400px;
@@ -1258,24 +1268,25 @@ nav .hamburger {
     padding-left: 25px;
   }
   nav .show-menu {
-    position: fixed;
+    z-index: 1000;
+    position: relative;
     top: 120px;
-    background: #fff;
+    background: #8a97bfa1;
     transition: all 0.3s;
     left: 0;
     width: 400px;
     flex-direction: column;
-    height: 100%;
+    height: 550px;
     justify-content: center;
     gap: 30px;
     align-items: flex-start;
     padding-left: 25px;
-    box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75);
+    /* box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75); */
+    /* -webkit-box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 9px 0px 16px 0px rgba(0, 0, 0, 0.75); */
   }
   nav .show-menu li a {
-    color: #184235;
+    color: #ffffff;
     font-weight: 600;
   }
   nav .show-menu button {
@@ -1285,16 +1296,13 @@ nav .hamburger {
   }
   nav .show-menu button:hover {
     background: #18191c;
-    color: #fff;
+    color: #f1f3f6;
   }
 }
 @media (max-width: 490px) {
   nav .menu {
-    background: #8a97bfa1;
-    width: calc(50% + 1px);;
-    height: calc(50% + 1px); /* Add 1px to the height */
+    width: 100%;
   }
-  
 }
 .notfound {
   min-height: 750px;
@@ -1316,7 +1324,7 @@ nav .hamburger {
 .notfound .content a:hover {
   background: #184235;
   transition: all 0.3s;
-  color: #fff;
+  color: #f1f3f6;
 }
 .resume-modal {
   width: 100%;

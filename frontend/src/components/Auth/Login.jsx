@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLock2Fill } from "react-icons/ri";
 import { Link, Navigate } from "react-router-dom";
@@ -6,6 +6,10 @@ import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+import { GoogleLogin } from 'react-google-login'; // Import GoogleLogin component
+import { gapi } from 'gapi-script';
+
+let clientId = '263163328650-ra32bng2gad5364jc9g6oalt16kioml5.apps.googleusercontent.com'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,9 +40,50 @@ const Login = () => {
       toast.error(error.response.data.message);
     }
   };
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: { clientId },
+        scope: ""
+      })
+    }
+    gapi.load('client:auth2', start)
+  }, [])
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
+  const onSuccess = async(e) => {
+    let res = await axios.post(
+      "http://localhost:4000/login",
+      {
+        name: e.profileObj.name,
+        type: "google",
+        email: e.profileObj.email,
+        tokenId: e.tokenId,
+        googleId: e.googleId
+      },
+      { withCredentials: true }
+    );
+    console.log(res.data)
+    if (!res.data.created) {
+      // console.log(res)
+      // const { name, email, phone, password } = res.errors;
+      // if (name) generateError(name);
+      // else if (email) generateError(email);
+      // else if (phone) generateError(phone);
+      // else if (password) generateError(password);
+    } else {
+      return <Navigate to={'/'} />
+    }
+  }
+  const onFailure = (e) => {
+    console.log(e)
+    toast.error(e, {
+      position: "bottom-right",
+    });
+  }
+
+
+  if (isAuthorized) {
+    return <Navigate to={'/'} />
   }
 
   return (
@@ -46,7 +91,6 @@ const Login = () => {
       <section className="authPage">
         <div className="container">
           <div className="header">
-            
             <h3>Login to your account</h3>
           </div>
           <form>
@@ -88,7 +132,19 @@ const Login = () => {
             <button type="submit" onClick={handleLogin}>
               Login
             </button>
+            <GoogleLogin
+              clientId={clientId}
+              buttonText="Continue with Google"
+              onSuccess={onSuccess}
+              onFailure={onFailure}
+              cookiePolicy={'single_host_origin'}
+            />            
             <Link to={"/register"}>Register Now</Link>
+            {/* Link to the Forgot Password page */}
+            <span>
+              Forgot password ?<Link to="/forgot">Click here</Link>
+            </span>
+            
           </form>
         </div>
         <div className="banner">
