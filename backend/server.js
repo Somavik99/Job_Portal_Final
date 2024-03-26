@@ -1,9 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import app from './app.js'; // Assuming 'app.js' contains your Express app
+import app from './app.js';  
 import cloudinary from 'cloudinary';
-
-// Configure Cloudinary
+ 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
   api_key: process.env.CLOUDINARY_CLIENT_API,
