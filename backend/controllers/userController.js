@@ -44,3 +44,41 @@ export const getUser = catchAsyncErrors(async (req, res, next) => {
   }
   res.status(200).json({ success: true, user });
 });
+
+export const checkUser = catchAsyncErrors(async (req, res, next) => {
+  const { email } = req.body;
+
+  // Check if the email is provided
+  if (!email) {
+    return next(new ErrorHandler('Please provide an email.', 400));
+  }
+
+  try {
+    // Check if the user exists
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.json({ error: 'User does not exist.' });
+    }
+
+    // Send OTP
+    const data = await axios.post(
+      'http://localhost:4000/send-otp',
+      req.body,
+      { withCredentials: true }
+    );
+
+    // Check if there's an error in sending OTP
+    if (data.data.error) {
+      return res.json({ error: data.data.error });
+    }
+
+    // User exists, OTP sent successfully
+    return res.json({ exist: true });
+  } catch (error) {
+    console.error(error);
+    return next(new ErrorHandler('Error checking user.', 500));
+  }
+});
+
+
