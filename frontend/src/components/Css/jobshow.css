@@ -1,0 +1,87 @@
+.myJobs {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .short_fields > div,
+  .long_field > div {
+    margin-bottom: 10px;
+  }
+  
+  .short_fields > div > span,
+  .long_field > div > span {
+    font-weight: bold;
+  }
+  
+  .short_fields input,
+  .short_fields select,
+  .long_field textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  
+  .long_field textarea {
+    height: 100px;
+  }
+  
+  .button_wrapper {
+    margin-top: 20px;
+  }
+  
+  .edit_btn,
+  .check_btn,
+  .cross_btn,
+  .delete_btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit_btn {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .check_btn {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .cross_btn {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .delete_btn {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  .banner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
